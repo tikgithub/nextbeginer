@@ -1,6 +1,8 @@
+'use client';
 import Link from "next/link";
 import "./globals.css";
 import {Noto_Sans_Lao} from "next/font/google";
+import { usePathname } from "next/navigation";
 
 const notoSansLao = Noto_Sans_Lao({
   subsets: ["latin"],
@@ -16,19 +18,22 @@ const notoSansLao = Noto_Sans_Lao({
 // });
 
 export default function RootLayout({ children }) {
+
+  const pathName = usePathname();
+
   return (
     <html lang="en">
       <body className={notoSansLao.className}>
         <header>
           <nav>
-            <Link href="/" className="nav-link">
+            <Link href="/" className={`nav-link ${pathName === "/" ? "nav-link-active":""}`}>
               Home
             </Link>
             <div>
-              <Link href="/dashboard" className="nav-link">
+              <Link href="/dashboard" className={`nav-link ${pathName ==="/dashboard" ? "nav-link-active":""}`}>
                 Dashboard
               </Link>
-              <Link href="/register" className="nav-link">
+              <Link href="/register" className={`nav-link ${pathName ==="/register" ? "nav-link-active":""}`}>
                 Register
               </Link>
             </div>
