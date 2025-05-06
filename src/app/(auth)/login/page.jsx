@@ -1,15 +1,15 @@
 'use client'
-import { register } from "@/actions/auth";
+import { login } from "@/actions/auth";
 import Link from "next/link";
 import { useActionState } from "react";
 
-export default function Register() {
+export default function Login() {
   
-  const [state, action, isPrending] = useActionState(register,undefined);
+  const [state, action, isPrending] = useActionState(login,undefined);
 
   return (
     <div className="container w-1/2">
-      <h1 className="title">ລົງທະບຽນ</h1>
+      <h1 className="title">ເຂົ້າສູ່ລະບົບ</h1>
       <form action={action} className="space-y-4">
         <div>
           <label htmlFor="email">ອີເມວ</label>
@@ -21,24 +21,15 @@ export default function Register() {
         <div>
           <label htmlFor="password">ລະຫັດຜ່ານ</label>
           <input type="password" name="password" id="password" />
-          {state?.errors?.password && (
-            <p className="text-red-500 text-sm">{state.errors.password}</p>
-          )}  
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input type="text" name="confirmPassword" id="confirmPassword" />
-          {state?.errors?.confirmPassword && (
-            <p className="text-red-500 text-sm">{state.errors.confirmPassword}</p>
-          )}
+        
         </div>
 
         <div className="flex items-end gap-4">
           <button disabled={isPrending} className="btn-primary">
-            {isPrending ? "Registering..." : "Register"}
+            {isPrending ? "Loading..." : "Login"}
           </button>
-          <Link className="text-link" href="/login">
-            Or Login Here
+          <Link className="text-link" href="/register">
+            Or Register Here
           </Link>
         </div>
       </form>

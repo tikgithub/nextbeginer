@@ -13,3 +13,8 @@ export const RegisterFormSchema= z.object({
         });
     }
 });
+
+export const LoginFormSchema = z.object({
+    email: z.string().email({message: "Invalid email address"}).trim(),
+    password: z.string().min(6, {message: "Password must be at least 6 characters long"}).trim(),
+});
